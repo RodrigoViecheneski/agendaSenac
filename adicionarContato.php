@@ -20,7 +20,8 @@
     <input type="text" name="profissao"/><br><br>
     Foto: <br>
     <input type="text" name="foto"/><br><br>
-
+    Nascimento: <br>
+    <input type="date" name="dt_nasc" /><br><br>
     <input type="submit" name="btCadastrar" value="ADICIONAR"/>
 </form>
 

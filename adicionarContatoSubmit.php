@@ -13,8 +13,9 @@ if(!empty($_POST['email'])){
     $cep = $_POST['cep'];
     $profissao = $_POST['profissao'];
     $foto = $_POST['foto'];
+    $dt_nasc = $_POST['dt_nasc'];
 
-    $contato->adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto);
+    $contato->adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto, $dt_nasc);
     header('Location: index.php');
 }else{
     echo '<script type="text/javascript">alert("Email já cadastrado!!");</script>';

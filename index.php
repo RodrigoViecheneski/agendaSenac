@@ -1,10 +1,19 @@
 <?php
+session_start();
 include 'classes/contatos.class.php';
+include 'classes/usuarios.class.php';
+if(!isset($_SESSION['logado'])){
+    header("Location: login.php");
+    exit;
+}
+$usuarios = new Usuarios();
+$usuarios->setUsuario($_SESSION['logado']);
 $contato = new Contatos();
 ?>
 <h1>Agenda Senac</h1>
 <hr>
-<button><a href="adicionarContato.php">ADICIONAR</a></button>
+<?php if($usuarios->temPermissoes('add')):  ?><button><a href="adicionarContato.php">ADICIONAR</a></button><?php endif; ?><br><br>
+<button><a href="sair.php">SAIR</a></button>
 <br><br>
 <table border="2" width=100%>
     <tr>
@@ -19,6 +28,7 @@ $contato = new Contatos();
         <th>CEP</th>
         <th>PROFISSÃO</th>
         <th>FOTO</th>
+        <th>Nascimento</th>
         <th>AÇÕES</th>
     </tr>
    <?php
@@ -38,9 +48,10 @@ $contato = new Contatos();
             <td><?php echo $item['cep'];?></td>
             <td><?php echo $item['profissao'];?></td>
             <td><?php echo $item['foto'];?></td>
+            <td><?php echo implode("/",array_reverse(explode("-", $item['dt_nasc'])));?></td>
             <td>
-                <a href="editarContato.php?id=<?php echo $item['id'];?>">EDITAR</a>
-                <a href="excluirContato.php?id=<?php echo $item['id'];?>" onclick="return confirm('Tem certeza que quer excluir este contato?')">| EXCLUIR</a>
+                <?php if($usuarios->temPermissoes('edit')): ?><a href="editarContato.php?id=<?php echo $item['id'];?>">EDITAR</a><?php endif; ?>
+                <?php if($usuarios->temPermissoes('del')): ?><a href="excluirContato.php?id=<?php echo $item['id'];?>" onclick="return confirm('Tem certeza que quer excluir este contato?')">| EXCLUIR</a><?php endif; ?>
             </td>
         </tr>
     </tbody>
