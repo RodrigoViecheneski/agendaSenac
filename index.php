@@ -27,7 +27,6 @@ $contato = new Contatos();
         <th>BAIRRO</th>
         <th>CEP</th>
         <th>PROFISSÃO</th>
-        <th>FOTO</th>
         <th>Nascimento</th>
         <th>AÇÕES</th>
     </tr>
@@ -47,7 +46,6 @@ $contato = new Contatos();
             <td><?php echo $item['bairro'];?></td>
             <td><?php echo $item['cep'];?></td>
             <td><?php echo $item['profissao'];?></td>
-            <td><?php echo $item['foto'];?></td>
             <td><?php echo implode("/",array_reverse(explode("-", $item['dt_nasc'])));?></td>
             <td>
                 <?php if($usuarios->temPermissoes('edit')): ?><a href="editarContato.php?id=<?php echo $item['id'];?>">EDITAR</a><?php endif; ?>

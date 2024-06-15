@@ -35,8 +35,6 @@
     <input type="text" name="cep" value="<?php echo $info['cep']?>"/><br><br>
     Profissão: <br>
     <input type="text" name="profissao" value="<?php echo $info['profissao']?>"/><br><br>
-    Foto: <br>
-    <input type="text" name="foto" value="<?php echo $info['foto']?>"/><br><br>
     Nascimento: <br>
     <input type="date" name="dt_nasc" value="<?php echo $info['dt_nasc']?>"/><br><br>
 
