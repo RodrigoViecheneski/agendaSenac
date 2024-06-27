@@ -6,9 +6,10 @@ require 'classes/usuarios.class.php';
 if(!empty($_POST['email'])){
     $email = addslashes($_POST['email']);
     $senha = md5($_POST['senha']);
+    $senha2 = md5($_POST['senha2']);
 
     $usuarios = new Usuarios();
-    if($usuarios->fazerLogin($email, $senha)){
+    if($senha == $senha2 && $usuarios->alterarSenha($email, $senha)){
         header("Location: index.php");
         exit;
     }else{
@@ -16,12 +17,16 @@ if(!empty($_POST['email'])){
     }
 }
 ?>
-<h1>LOGIN</h1>
+
+
+
+<h1>Esqueceu sua senha?</h1>
+
 <form method="POST">
-    Email: <br>
+    Informe seu login (Email):<br>
     <input type="email" name="email"><br><br>
-    Senha: <br>
+    Digite a nova senha: <br>
     <input type="password" name="senha"><br><br>
-    <a href="esqueceuSenha.php">ESQUECEU SUA SENHA? CLICK AQUI</a><br>
-    <input type="submit" value="Entrar">
-</form>
+    Repita a nova senha: <br>
+    <input type="password" name="senha2"><br><br>
+    <input type="submit" value="Alterar">

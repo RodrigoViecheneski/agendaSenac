@@ -36,6 +36,9 @@ class Usuarios {
         }
         return FALSE;
    }
+   public function alterarSenha($email, $senha, $id){
+        
+   }
    public function setUsuario($id){
     $this->id = $id;
     $sql = $this->con->conectar()->prepare("SELECT * FROM usuarios WHERE id = :id");

@@ -13,9 +13,22 @@ if(!empty($_POST['id'])){
     $cep = $_POST['cep'];
     $profissao = $_POST['profissao'];
     $dt_nasc = $_POST['dt_nasc'];
-    $id = $_POST['id'];
+    if(isset($_FILES['foto'])){
+        $foto = $_FILES['foto'];
+    }else{
+        $foto = array();
+    }
+
     if(!empty($email)){
-        $contato->editar($nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $dt_nasc, $id);
+        $contato->editar($nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto, $dt_nasc, $_GET['id']);
     }
     header("Location: /agendaSenac");
+}
+if(isset($_GET['id']) && !empty($_GET['id'])){
+    $info = $contato->getContato($_GET['id']);
+}else{
+    ?>
+    <script type="text/javascript">window.location.href="index.php";</script>
+    <?php
+    exit;
 }
